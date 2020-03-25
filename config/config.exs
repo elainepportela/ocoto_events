@@ -7,13 +7,16 @@
 # General application configuration
 use Mix.Config
 
+config :octo_events,
+  ecto_repos: [OctoEvents.Repo]
+
 # Configures the endpoint
 config :octo_events, OctoEventsWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "fjvspbP2G7UzF+fKAIcxn+IuyptNfhshi4O2Exby3WP5rlt/QuNS4FP+LcxRm5iw",
+  secret_key_base: "T2W66GaHKy1WbWVMXLx6GlRqHAFbtWLJXlPIT93ZFejRmjwi/vEEX7G3x1drt3d/",
   render_errors: [view: OctoEventsWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: OctoEvents.PubSub, adapter: Phoenix.PubSub.PG2],
-  live_view: [signing_salt: "jh69TN/g"]
+  live_view: [signing_salt: "SGwEx+dP"]
 
 # Configures Elixir's Logger
 config :logger, :console,

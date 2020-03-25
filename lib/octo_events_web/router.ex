@@ -5,7 +5,6 @@ defmodule OctoEventsWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
-    plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
 
@@ -13,10 +12,16 @@ defmodule OctoEventsWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :csrf do
+    plug :protect_from_forgery
+  end
+
   scope "/", OctoEventsWeb do
-    pipe_through :browser
+    pipe_through [:browser, :api]
 
     get "/", PageController, :index
+
+    post "/", PingController, :ping
   end
 
   # Other scopes may use custom stacks.
