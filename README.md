@@ -1,4 +1,4 @@
-# Teste
+# OctoEvents
 
 To start your Phoenix server:
 
