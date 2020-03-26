@@ -1,9 +1,8 @@
 defmodule OctoEvents.User do
   use Ecto.Schema
 
-  @primary_key {:id, :integer, autogenerate: false}
-  @foreign_key_type :integer
-  schema "user" do
+  @primary_key {:id, :integer, []}
+  schema "users" do
     field :avatar_url, :string, null: false
     field :events_url, :string
     field :followers_url, :string
