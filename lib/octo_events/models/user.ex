@@ -1,5 +1,8 @@
 defmodule OctoEvents.User do
   use Ecto.Schema
+  import Ecto.Changeset
+
+  alias OctoEvents.{Issue, Repository, Event}
 
   @primary_key {:id, :integer, []}
   schema "users" do
@@ -21,6 +24,16 @@ defmodule OctoEvents.User do
     field :type, :string, null: false
     field :url, :string, null: false
 
-    timestamps()
+    has_many :issues, Issue
+    has_many :repositories, Repository
+    has_many :events, Event
+
+    timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
+  end
+  def changeset(user,  params) do
+    user
+    |> cast(params, [:login, :id, :node_id, :avatar_url, :gravatar_id, :url, :html_url, :followers_url, :following_url, :gists_url, :starred_url, :subscriptions_url, :organizations_url, :repos_url, :events_url, :received_events_url, :type, :site_admin])
+    |> validate_required([:login, :id, :node_id, :avatar_url, :url, :type, :site_admin])
+    |> unique_constraint(:id, message: "Usuario ja inserido, não precisa inserir de novo!")
   end
 end

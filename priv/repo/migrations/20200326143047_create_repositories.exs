@@ -68,17 +68,18 @@ defmodule OctoEvents.Repo.Migrations.CreateRepositories do
       add :contents_url, :string
       add :subscription_url, :string
       add :watchers, :integer
-      add :pushed_at, :time
+      add :pushed_at, :utc_datetime
+      add :updated_at, :utc_datetime
       add :git_tags_url, :string
       add :language, :string
-      add :created_at, :time
+      add :created_at, :utc_datetime
       add :releases_url, :string
       add :url, :string
       add :commits_url, :string
       add :comments_url, :string
-      add :owner, references(:users)
-
+      add :owner_id, references(:users)
+      timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
-    create unique_index(:repositories, [:owner])
+    create unique_index(:repositories, [:owner_id])
   end
 end

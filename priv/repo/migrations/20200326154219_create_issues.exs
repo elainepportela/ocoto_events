@@ -17,13 +17,13 @@ defmodule OctoEvents.Repo.Migrations.CreateIssues do
       add :locked, :boolean
       add :milestone, :string
       add :comments, :integer
-      add :created_at, :time
-      add :updated_at, :time
-      add :closed_at, :time
+      add :created_at, :utc_datetime
+      add :updated_at, :utc_datetime
+      add :closed_at, :utc_datetime
       add :author_association, :string
       add :body, :string
       add :user_id, references(:users)
-
+      timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
 
     create unique_index(:issues, [:user_id])

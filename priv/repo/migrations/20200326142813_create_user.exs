@@ -21,6 +21,7 @@ defmodule OctoEvents.Repo.Migrations.CreateUser do
       add :subscriptions_url, :string
       add :type, :string, null: false
       add :url, :string, null: false
+      timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
   end
 end

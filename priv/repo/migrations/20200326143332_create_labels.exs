@@ -10,6 +10,7 @@ defmodule OctoEvents.Repo.Migrations.CreateLabels do
       add :name, :string
       add :node_id, :string
       add :url, :string
+      timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
   end
 end
