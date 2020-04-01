@@ -4,15 +4,13 @@ defmodule OctoEvents.Repo.Migrations.CreateEvent do
   def change do
     create table(:events) do
       add :action, :string
-      add :issue, references(:issues)
-      add :repository, references(:repositories)
-      add :sender, references(:users)
+      add :issue_id, references(:issues)
+      add :repository_id, references(:repositories)
+      add :sender_id, references(:users)
 
-      timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
+      timestamps([{:inserted_at, :inserted_at}, {:updated_at, false}])
     end
 
-    create unique_index(:events, [:issue])
-    create unique_index(:events, [:repository])
-    create unique_index(:events, [:sender])
+    create unique_index(:events, [:issue_id, :repository_id, :sender_id])
   end
 end

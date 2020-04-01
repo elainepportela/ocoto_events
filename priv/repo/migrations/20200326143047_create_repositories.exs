@@ -80,6 +80,5 @@ defmodule OctoEvents.Repo.Migrations.CreateRepositories do
       add :owner_id, references(:users)
       timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
-    create unique_index(:repositories, [:owner_id])
   end
 end

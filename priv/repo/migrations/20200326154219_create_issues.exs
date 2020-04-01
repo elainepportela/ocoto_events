@@ -25,8 +25,5 @@ defmodule OctoEvents.Repo.Migrations.CreateIssues do
       add :user_id, references(:users)
       timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
-
-    create unique_index(:issues, [:user_id])
-
   end
 end
