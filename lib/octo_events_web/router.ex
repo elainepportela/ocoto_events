@@ -23,7 +23,7 @@ defmodule OctoEventsWeb.Router do
 
     post "/", PingController, :ping
 
-    get "issue/:issue_id/events", PingController, :recupera
+    get "issue/:issue_id/events", IssuesController, :recupera
   end
 
   # Other scopes may use custom stacks.
