@@ -22,6 +22,8 @@ defmodule OctoEventsWeb.Router do
     get "/", PageController, :index
 
     post "/", PingController, :ping
+
+    get "issue/:issue_id/events", PingController, :recupera
   end
 
   # Other scopes may use custom stacks.

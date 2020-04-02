@@ -23,6 +23,7 @@ defmodule OctoEvents.Repo.Migrations.CreateIssues do
       add :author_association, :string
       add :body, :string
       add :user_id, references(:users)
+
       timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
     end
   end

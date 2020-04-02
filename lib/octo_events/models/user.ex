@@ -25,6 +25,7 @@ defmodule OctoEvents.User do
     has_many :issues, Issue
     has_many :repositories, Repository, foreign_key: :owner_id
     has_many :events, Event, foreign_key: :sender_id
+    many_to_many :issues_assignee, Issue, join_through: "assignees_issue"
 
     timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
   end

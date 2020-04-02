@@ -10,7 +10,5 @@ defmodule OctoEvents.Repo.Migrations.CreateEvent do
 
       timestamps([{:inserted_at, :inserted_at}, {:updated_at, false}])
     end
-
-    create unique_index(:events, [:issue_id, :repository_id, :sender_id])
   end
 end

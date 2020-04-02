@@ -4,8 +4,18 @@ defmodule OctoEventsWeb.PingController do
   alias OctoEventsWeb.PingView
 
   def ping(conn, params) do
-    # evento = get_req_header(conn, "x-github-event")
-    PingView.salvar_evento(params)
-    render(conn, "ping.html")
+    evento = PingView.salvar_evento(params)
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "")
+  end
+
+  def recupera(conn, params) do
+    IO.puts("PARAM")
+    IO.inspect(params["issue_id"])
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "")
+
   end
 end
