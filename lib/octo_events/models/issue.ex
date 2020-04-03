@@ -2,6 +2,7 @@ defmodule OctoEvents.Issue do
   use Ecto.Schema
   alias OctoEvents.{User, Label, Event}
 
+  @derive {Poison.Encoder, only: [:labels, :assignees, :user, :url, :repository_url, :labels_url, :comments_url, :events_url, :html_url, :id, :node_id, :number, :title, :state, :locked, :milestone, :comments, :created_at, :updated_at, :closed_at, :author_association, :body]}
   @primary_key {:id, :integer, []}
   schema "issues" do
     field :url, :string
