@@ -1,6 +1,6 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>A productive web framework that<br/>does not compromise speed or maintainability.</p>
+  <h1><%= gettext "Welcome to %{name}!", name: "WebHook" %></h1>
+  <p>A api that receives the issues<br/>from github and saves in the database.</p>
 </section>
 
 <section class="row">

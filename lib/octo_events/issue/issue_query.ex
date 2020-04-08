@@ -1,6 +1,6 @@
 defmodule OctoEvents.IssueQuery do
   import Ecto.Changeset
-  alias OctoEvents.{Issue, Label, Repo, UserQuery, LabelQuery}
+  alias OctoEvents.{Issue, Repo, UserQuery, LabelQuery}
   import Ecto.Query, only: [from: 2]
 
   @required_fields ~w(url id title created_at body)a

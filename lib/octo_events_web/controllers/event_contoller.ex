@@ -1,7 +1,18 @@
-defmodule OctoEventsWeb.IssuesController do
+defmodule OctoEventsWeb.EventController do
   use OctoEventsWeb, :controller
 
-  alias OctoEvents.IssueQuery
+  alias OctoEvents.{EventQuery, IssueQuery}
+
+  def index(conn, _params) do
+    render(conn, "index.html")
+  end
+
+  def create(conn, params) do
+    EventQuery.set_insert_event(params)
+    conn
+    |> put_resp_content_type("text/plain")
+    |> send_resp(200, "")
+  end
 
   def show(conn, params) do
     issue = IssueQuery.get_issue(params["issue_id"])
