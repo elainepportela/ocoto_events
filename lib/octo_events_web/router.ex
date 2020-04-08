@@ -19,11 +19,9 @@ defmodule OctoEventsWeb.Router do
   scope "/", OctoEventsWeb do
     pipe_through [:browser, :api]
 
-    get "/", PageController, :index
+    post "/event", PingController, :create
 
-    post "/", PingController, :ping
-
-    get "issue/:issue_id/events", IssuesController, :recupera
+    get "/issue/:issue_id/events", IssuesController, :show
   end
 
   # Other scopes may use custom stacks.

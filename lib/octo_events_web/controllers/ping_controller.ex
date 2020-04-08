@@ -1,10 +1,10 @@
 defmodule OctoEventsWeb.PingController do
   use OctoEventsWeb, :controller
 
-  alias OctoEventsWeb.{PingView, IssuesView}
+  alias OctoEvents.EventQuery
 
-  def ping(conn, params) do
-    evento = PingView.salvar_evento(params)
+  def create(conn, params) do
+    EventQuery.set_insert_event(params)
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(200, "")

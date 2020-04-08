@@ -1,10 +1,10 @@
 defmodule OctoEventsWeb.IssuesController do
   use OctoEventsWeb, :controller
 
-  alias OctoEventsWeb.IssuesView
+  alias OctoEvents.IssueQuery
 
-  def recupera(conn, params) do
-    issue = IssuesView.recupera_issue(params["issue_id"])
+  def show(conn, params) do
+    issue = IssueQuery.get_issue(params["issue_id"])
     pretty_json(conn, issue)
   end
 
