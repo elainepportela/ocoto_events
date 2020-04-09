@@ -2,7 +2,6 @@ defmodule OctoEvents.User do
   use Ecto.Schema
   alias OctoEvents.{Issue, Repository, Event}
 
-  @derive {Poison.Encoder, only: [:login, :id, :node_id, :avatar_url, :gravatar_id, :url, :html_url, :followers_url, :following_url, :gists_url, :starred_url, :subscriptions_url, :organizations_url, :repos_url, :events_url, :received_events_url, :type, :site_admin]}
   @primary_key {:id, :integer, []}
   schema "users" do
     field :avatar_url, :string, null: false

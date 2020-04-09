@@ -3,7 +3,6 @@ defmodule OctoEvents.Label do
 
   alias OctoEvents.Issue
 
-  @derive {Poison.Encoder, only: [:id, :color, :default, :description, :name, :node_id, :url]}
   @primary_key {:id, :integer, []}
   schema "labels" do
     field :color, :string

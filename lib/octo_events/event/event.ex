@@ -3,7 +3,6 @@ defmodule OctoEvents.Event do
 
   alias OctoEvents.{User, Issue, Repository}
 
-  @derive {Poison.Encoder, only: [:action, :issue, :sender, :repository]}
   @primary_key {:id, :integer, []}
   schema "events" do
     field :action, :string
