@@ -1,9 +1,8 @@
 defmodule OctoEvents.Label do
   use Ecto.Schema
 
-  alias OctoEvents.{Issue}
+  alias OctoEvents.Issue
 
-  @derive {Poison.Encoder, only: [:id, :color, :default, :description, :name, :node_id, :url]}
   @primary_key {:id, :integer, []}
   schema "labels" do
     field :color, :string
