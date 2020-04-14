@@ -19,7 +19,8 @@ defmodule OctoEvents.IssueRepo do
   end
 
   def set_insert_issue(params) do
-    creation_changeset(%Issue{}, params)
+    %Issue{}
+    |> creation_changeset(params)
     |> insert()
   end
 

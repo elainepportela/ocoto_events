@@ -2,11 +2,16 @@ defmodule OctoEventsWeb.EventView do
   use OctoEventsWeb, :view
 
   def issue_to_json(issue) do
-    Map.take(issue, [:title, :state, :created_at, :closed_at, :body])
+    issue
+    |> Map.take([:title, :state, :created_at, :closed_at, :body])
   end
 
-  def event_to_json(event) do
-    Map.take(event, [:issue_id, :action])
-    |> Map.put_new(:issue, issue_to_json(event.issue))
+  def render("event.json", %{event: event}) do
+    %{
+      action: event.action,
+      issue_id: event.issue_id,
+      issue: issue_to_json(event.issue),
+    }
   end
+
 end
