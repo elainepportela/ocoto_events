@@ -1,34 +1,34 @@
 defmodule OctoEvents.EventQuery do
-  use Ecto.Schema
+
   import Ecto.Changeset
+  alias OctoEvents.{Repo, Event, IssueQuery}
+  import Ecto.Query, only: [from: 2]
 
-  alias OctoEvents.{Repo, Event}
-  alias OctoEvents.{UserQuery, IssueQuery, RepositoryQuery}
-
-  @required_fields ~w(action)a
-
-  defp set_event(event, params, sender, repository, issue) do
+  def set_event(issue, event, params) do
     event
-    |> cast(params, @required_fields)
-    |> put_assoc(:sender, sender)
-    |> put_assoc(:repository, repository)
+    |> cast(params, [:action])
     |> put_assoc(:issue, issue)
   end
 
-  def insert_event(event_chagenset) do
-    case Repo.insert event_chagenset, on_conflict: {:replace_all_except, [:inserted_at]}, conflict_target: :id do
+  def insert_event(event_changeset) do
+    case Repo.insert event_changeset, on_conflict: {:replace_all_except, [:inserted_at]}, conflict_target: :id do
       {:ok, event} -> event
       {:error, errors} ->
-        IO.puts("Failed insert event. Error:")
+        IO.puts("Failed insert Event. Error:")
         IO.inspect(errors)
     end
   end
 
   def set_insert_event(params) do
-    sender = UserQuery.set_insert_user(params["sender"])
-    repository = RepositoryQuery.set_insert_repository(params["repository"])
-    issue = IssueQuery.set_insert_issue(params["issue"])
-    set_event(%Event{}, params, sender, repository, issue)
+    IssueQuery.set_insert_issue(params["issue"])
+    |> set_event(%Event{}, params)
     |> insert_event()
   end
+
+  def get_events_by_issue_id(issue_id) do
+    query = from e in Event, where: e.issue_id == ^issue_id
+    Repo.all(query, preload: [:issue])
+    |> Repo.preload([:issue])
+  end
+
 end

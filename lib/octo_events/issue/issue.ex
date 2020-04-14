@@ -1,31 +1,14 @@
 defmodule OctoEvents.Issue do
   use Ecto.Schema
-  alias OctoEvents.{User, Label, Event}
+  alias OctoEvents.Event
 
   @primary_key {:id, :integer, []}
   schema "issues" do
-    field :url, :string
-    field :repository_url, :string
-    field :labels_url, :string
-    field :comments_url, :string
-    field :events_url, :string
-    field :html_url, :string
-    field :node_id, :string
-    field :number, :integer
     field :title, :string
     field :state, :string
-    field :locked, :boolean
-    field :milestone, :string
-    field :comments, :integer
-    field :created_at, :utc_datetime
-    field :updated_at, :utc_datetime
-    field :closed_at, :utc_datetime
-    field :author_association, :string
     field :body, :string
-
-    many_to_many :labels, Label, join_through: "labels_issue"
-    many_to_many :assignees, User, join_through: "assignees_issue"
-    belongs_to :user, User
+    field :created_at, :utc_datetime
+    field :closed_at, :utc_datetime
 
     has_one :event, Event
 

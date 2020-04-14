@@ -1,13 +1,8 @@
 defmodule OctoEventsWeb.EventController do
   use OctoEventsWeb, :controller
 
-  alias OctoEvents.{EventQuery, IssueQuery}
+  alias OctoEvents.EventQuery
   alias OctoEventsWeb.EventView
-
-
-  def index(conn, _params) do
-    render(conn, "index.html")
-  end
 
   def create(conn, params) do
     EventQuery.set_insert_event(params)
@@ -17,8 +12,9 @@ defmodule OctoEventsWeb.EventController do
   end
 
   def show(conn, params) do
-    IssueQuery.get_issue(params["issue_id"])
-    |> EventView.issue_to_json()
+    EventQuery.get_events_by_issue_id(params["issue_id"])
+    |> List.first()
+    |> EventView.event_to_json()
     |> pretty_json(conn)
   end
 
@@ -26,6 +22,6 @@ defmodule OctoEventsWeb.EventController do
     conn
     |> Plug.Conn.put_resp_header("content-type", "application/json; charset=utf-8")
     |> Plug.Conn.send_resp(200, Poison.encode!(data, pretty: true))
-    #
   end
+
 end

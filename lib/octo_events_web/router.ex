@@ -22,7 +22,7 @@ defmodule OctoEventsWeb.Router do
 
     post "/event", EventController, :create
 
-    get "/issue/:issue_id/events", EventController, :show
+    get "/issue/:issue_id/event", EventController, :show
   end
 
   # Other scopes may use custom stacks.
