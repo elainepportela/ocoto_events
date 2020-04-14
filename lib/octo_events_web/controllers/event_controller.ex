@@ -1,19 +1,18 @@
 defmodule OctoEventsWeb.EventController do
   use OctoEventsWeb, :controller
 
-  alias OctoEvents.EventQuery
+  alias OctoEvents.EventRepo
   alias OctoEventsWeb.EventView
 
   def create(conn, params) do
-    EventQuery.set_insert_event(params)
+    EventRepo.set_insert_event(params)
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(200, "")
   end
 
   def show(conn, params) do
-    EventQuery.get_events_by_issue_id(params["issue_id"])
-    |> List.first()
+    EventRepo.get_by_issue_id(params["issue_id"])
     |> EventView.event_to_json()
     |> pretty_json(conn)
   end
