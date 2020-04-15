@@ -6,6 +6,10 @@ defmodule OctoEventsWeb.EventView do
     |> Map.take([:title, :state, :created_at, :closed_at, :body])
   end
 
+  def render("show.json", %{events: events}) do
+    %{data: render_many(events, OctoEventsWeb.EventView, "event.json")}
+  end
+
   def render("event.json", %{event: event}) do
     %{
       action: event.action,

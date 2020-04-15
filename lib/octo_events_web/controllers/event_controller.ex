@@ -11,8 +11,9 @@ defmodule OctoEventsWeb.EventController do
   end
 
   def show(conn, params) do
-    event = EventRepo.get_by_issue_id(params["issue_id"])
-    render(conn, "event.json", event: event)
+    events = EventRepo.get_by_issue_id(params["issue_id"])
+    IO.inspect(events)
+    render(conn, "show.json", events: events)
   end
 
 end

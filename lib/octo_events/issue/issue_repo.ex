@@ -6,7 +6,7 @@ defmodule OctoEvents.IssueRepo do
   def creation_changeset(issue, params) do
     issue
     |> cast(params, [:id, :title, :state, :body, :created_at, :closed_at])
-    |> unique_constraint(:id, message: "Issue ja inserido, não precisa inserir de novo!")
+    |> unique_constraint(:issues_pkey, message: "Issue ja inserido, não precisa inserir de novo!")
   end
 
   def insert(changeset) do
