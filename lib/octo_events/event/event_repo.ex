@@ -1,14 +1,12 @@
 defmodule OctoEvents.EventRepo do
 
   import Ecto.Changeset
-  alias OctoEvents.{Repo, Event, IssueRepo}
+  alias OctoEvents.{Repo, Event}
   import Ecto.Query, only: [from: 2]
 
   def creation_changeset(event, params) do
     event
-    |> cast(params, [:action])
-    |> cast_assoc(:issue, with: &IssueRepo.creation_changeset/2)
-    |> unique_constraint(:issues_pkey, message: "Issue ja inserido, não precisa inserir de novo!")
+    |> cast(params, [:action, :login_user, :issue_id, :title, :state, :body, :created_at, :closed_at])
   end
 
   def insert(changeset) do
@@ -21,14 +19,15 @@ defmodule OctoEvents.EventRepo do
   end
 
   def set_insert_event(params) do
-    creation_changeset(%Event{}, params)
+    %Event{}
+    |> creation_changeset(params)
     |> insert()
   end
 
   def get_by_issue_id(issue_id) do
     query = from e in Event, where: e.issue_id == ^issue_id
     Repo.all(query)
-    |> Repo.preload(:issue)
   end
+
 
 end
