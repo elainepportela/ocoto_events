@@ -6,7 +6,7 @@ defmodule OctoEventsWeb.EventController do
 
   def create(conn, params) do
     EventView.format_params_event(params)
-    |> EventRepo.set_insert_event()
+    |> EventRepo.insert_event()
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(200, "")

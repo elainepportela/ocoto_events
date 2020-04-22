@@ -1,8 +1,8 @@
 defmodule OctoEvents.EventRepo do
 
   import Ecto.Changeset
-  alias OctoEvents.{Repo, Event}
   import Ecto.Query, only: [from: 2]
+  alias OctoEvents.{Repo, Event}
 
   def creation_changeset(event, params) do
     event
@@ -18,7 +18,7 @@ defmodule OctoEvents.EventRepo do
     end
   end
 
-  def set_insert_event(params) do
+  def insert_event(params) do
     %Event{}
     |> creation_changeset(params)
     |> insert()
