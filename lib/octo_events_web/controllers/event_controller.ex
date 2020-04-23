@@ -2,9 +2,11 @@ defmodule OctoEventsWeb.EventController do
   use OctoEventsWeb, :controller
 
   alias OctoEvents.EventRepo
+  alias OctoEventsWeb.EventView
 
   def create(conn, params) do
-    EventRepo.set_insert_event(params)
+    EventView.format_params_event(params)
+    |> EventRepo.insert_event()
     conn
     |> put_resp_content_type("text/plain")
     |> send_resp(200, "")
@@ -12,7 +14,6 @@ defmodule OctoEventsWeb.EventController do
 
   def show(conn, params) do
     events = EventRepo.get_by_issue_id(params["issue_id"])
-    IO.inspect(events)
     render(conn, "show.json", events: events)
   end
 
