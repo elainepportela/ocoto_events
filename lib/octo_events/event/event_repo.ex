@@ -29,5 +29,4 @@ defmodule OctoEvents.EventRepo do
     Repo.all(query)
   end
 
-
 end
