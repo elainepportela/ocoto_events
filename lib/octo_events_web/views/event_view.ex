@@ -2,7 +2,6 @@ defmodule OctoEventsWeb.EventView do
   use OctoEventsWeb, :view
 
   def format_params_event(params) do
-    IO.inspect(params)
     %{
       action: params["action"],
       login_user: params["issue"]["user"]["login"],
