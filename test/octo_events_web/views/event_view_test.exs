@@ -2,11 +2,10 @@ defmodule OctoEventsWeb.PageViewTest do
   use OctoEventsWeb.ConnCase, async: true
 
   alias OctoEventsWeb.EventView
-  alias OctoEvents.Event
 
   test "show.json" do
     dt = DateTime.now("Etc/UTC")
-    events = [%Event{action: "testing",
+    events = [%{action: "testing",
       login_user: "tester",
       issue_id: 5,
       title: "Testting the OctoEvents",

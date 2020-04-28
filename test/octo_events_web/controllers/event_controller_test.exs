@@ -1,12 +1,14 @@
 defmodule OctoEventsWeb.EventControllerTest do
   use OctoEventsWeb.ConnCase
   use Mimic
-  alias OctoEvents.{Event, Repo}
+
+  alias OctoEvents.{EventDomain}
 
   test "GET /issue/:issue_id/event " do
     conn = build_conn()
-    Repo
-    |> expect(:all, fn(_) -> [%Event{action: "tested", login_user: "tester", issue_id: 5, title: "Testing application",
+
+    EventDomain
+    |> expect(:get_event, fn(_) -> [%{action: "tested", login_user: "tester", issue_id: 5, title: "Testing application",
     state: "open", body: "", created_at: "2020-04-17T17:05:05Z", closed_at: nil}] end )
 
     conn = get(conn, "/issue/5/event")
@@ -44,8 +46,8 @@ defmodule OctoEventsWeb.EventControllerTest do
       "closed_at" => nil,
       }}
 
-    Repo
-    |> expect(:insert, fn(_,_) -> {:ok, params} end )
+    EventDomain
+    |> expect(:create_event, fn(_) -> {:ok, params} end )
 
     conn = post(conn, "/event", params)
 
