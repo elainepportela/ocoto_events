@@ -23,5 +23,4 @@ defmodule OctoEventsWeb.Router do
 
     get "/issue/:issue_id/event", EventController, :show
   end
-
 end

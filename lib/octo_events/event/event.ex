@@ -1,4 +1,3 @@
-
 defmodule OctoEvents.Event do
   use Ecto.Schema
 
@@ -13,6 +12,6 @@ defmodule OctoEvents.Event do
     field :created_at, :utc_datetime
     field :closed_at, :utc_datetime
 
-    timestamps([{:inserted_at,:inserted_at}, {:updated_at, false}])
+    timestamps([{:inserted_at, :inserted_at}, {:updated_at, false}])
   end
 end

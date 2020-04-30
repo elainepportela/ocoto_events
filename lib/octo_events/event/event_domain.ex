@@ -16,7 +16,7 @@ defmodule OctoEvents.EventDomain do
       state: params["issue"]["state"],
       body: params["issue"]["body"],
       created_at: params["issue"]["created_at"],
-      closed_at: params["issue"]["closed_at"],
+      closed_at: params["issue"]["closed_at"]
     }
   end
 
