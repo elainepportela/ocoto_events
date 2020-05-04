@@ -34,7 +34,8 @@ defmodule OctoEvents.EventRepoTest do
 
     event = EventRepo.creation_changeset(params)
 
-    assert not event.valid?
+    assert [created_at: ...] = event.errors
+
   end
 
   test "should create a empty event changeset" do
