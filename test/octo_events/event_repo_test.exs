@@ -34,6 +34,7 @@ defmodule OctoEvents.EventRepoTest do
 
     event = EventRepo.creation_changeset(params)
 
+    refute event.valid?
     assert [created_at: {"is invalid", [type: :utc_datetime, validation: :cast]}] == event.errors
 
   end
