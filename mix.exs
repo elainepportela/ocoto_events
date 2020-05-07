@@ -45,6 +45,7 @@ defmodule OctoEvents.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.2", only: [:dev, :test], runtime: false},
       {:poison, "~> 3.1"},
+      {:mimic, "~> 1.2", only: :test}
     ]
   end
 
