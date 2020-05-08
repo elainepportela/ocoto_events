@@ -2,13 +2,13 @@ defmodule OctoEventsWeb.EventControllerTest do
   use OctoEventsWeb.ConnCase
   use Mimic
 
-  alias OctoEvents.{EventDomain}
+  alias OctoEvents.{ListEvent, CreateEvent}
 
   test "GET /issue/:issue_id/event " do
     conn = build_conn()
 
-    EventDomain
-    |> expect(:get_event, fn _ ->
+    ListEvent
+    |> expect(:list_event, fn _ ->
       [
         %{
           action: "tested",
@@ -23,7 +23,7 @@ defmodule OctoEventsWeb.EventControllerTest do
       ]
     end)
 
-    conn = get(conn, "/issue/5/event")
+    conn = get(conn, "/issue/5/events")
 
     assert json_response(conn, 200) == %{
              "data" => [
@@ -65,11 +65,11 @@ defmodule OctoEventsWeb.EventControllerTest do
       }
     }
 
-    EventDomain
+    CreateEvent
     |> expect(:create_event, fn _ -> {:ok, params} end)
 
     conn = post(conn, "/event", params)
 
-    assert json_response(conn, 200) == %{}
+    assert json_response(conn, 201) == params
   end
 end
