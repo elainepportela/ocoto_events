@@ -4,7 +4,6 @@ defmodule OctoEvents.CreateEventTest do
 
   alias OctoEvents.CreateEvent
 
-
   test "should return a valid formatted map" do
     params = %{
       "action" => "created",

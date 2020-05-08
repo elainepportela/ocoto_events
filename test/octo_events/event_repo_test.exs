@@ -36,7 +36,6 @@ defmodule OctoEvents.EventRepoTest do
 
     refute event.valid?
     assert [created_at: {"is invalid", [type: :utc_datetime, validation: :cast]}] == event.errors
-
   end
 
   test "should create a empty event changeset" do

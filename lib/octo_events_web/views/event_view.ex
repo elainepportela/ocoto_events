@@ -8,5 +8,4 @@ defmodule OctoEventsWeb.EventView do
   def render("event.json", %{event: event}) do
     Map.drop(event, [:__struct__, :__meta__])
   end
-
 end

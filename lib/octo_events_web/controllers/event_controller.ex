@@ -9,6 +9,7 @@ defmodule OctoEventsWeb.EventController do
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(201, Poison.encode!(changeset, pretty: true))
+
       {:error, changeset} ->
         conn
         |> put_resp_content_type("application/json")

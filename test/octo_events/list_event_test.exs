@@ -43,5 +43,4 @@ defmodule OctoEvents.ListEventTest do
              }
            ]
   end
-
 end
