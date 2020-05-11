@@ -8,7 +8,7 @@ defmodule OctoEventsWeb.EventControllerTest do
     conn = build_conn()
 
     ListEvent
-    |> expect(:list_event, fn _ ->
+    |> expect(:list_events, fn _ ->
       [
         %{
           action: "tested",

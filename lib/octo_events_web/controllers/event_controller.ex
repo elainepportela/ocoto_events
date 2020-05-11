@@ -20,7 +20,7 @@ defmodule OctoEventsWeb.EventController do
   def show(conn, params) do
     events =
       params["issue_id"]
-      |> OctoEvents.list_event()
+      |> OctoEvents.list_events()
 
     render(conn, "show.json", events: events)
   end

@@ -22,7 +22,7 @@ defmodule OctoEvents.EventRepo do
     |> Repo.insert()
   end
 
-  def list_by_issue_id(issue_id) do
+  def list_by(%{issue_id: issue_id}) do
     query = from e in Event, where: e.issue_id == ^issue_id
     Repo.all(query)
   end

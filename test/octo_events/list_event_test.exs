@@ -5,15 +5,15 @@ defmodule OctoEvents.ListEventTest do
   alias OctoEvents.{ListEvent, EventRepo}
 
   test "should not find a valid event in database" do
-    EventRepo |> expect(:list_by_issue_id, fn _ -> [] end)
+    EventRepo |> expect(:list_by, fn _ -> [] end)
     issue_id_invalid = 2
 
-    assert ListEvent.list_event(issue_id_invalid) == []
+    assert ListEvent.list_events(issue_id_invalid) == []
   end
 
   test "should return a valid event " do
     EventRepo
-    |> expect(:list_by_issue_id, fn _ ->
+    |> expect(:list_by, fn _ ->
       [
         %{
           action: "tested",
@@ -28,7 +28,7 @@ defmodule OctoEvents.ListEventTest do
       ]
     end)
 
-    event = ListEvent.list_event(5)
+    event = ListEvent.list_events(5)
 
     assert event == [
              %{
