@@ -2,13 +2,13 @@ defmodule OctoEventsWeb.EventControllerTest do
   use OctoEventsWeb.ConnCase
   use Mimic
 
-  alias OctoEvents.{ListEvent, CreateEvent}
+  alias OctoEvents.{ListEvents, CreateEvent}
 
   test "GET /issue/:issue_id/event " do
     conn = build_conn()
 
-    ListEvent
-    |> expect(:list_events, fn _ ->
+    ListEvents
+    |> expect(:run, fn _ ->
       [
         %{
           action: "tested",

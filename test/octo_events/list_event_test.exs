@@ -1,14 +1,14 @@
-defmodule OctoEvents.ListEventTest do
+defmodule OctoEvents.ListEventsTest do
   use OctoEventsWeb.ConnCase, async: true
   use Mimic
 
-  alias OctoEvents.{ListEvent, EventRepo}
+  alias OctoEvents.{ListEvents, EventRepo}
 
   test "should not find a valid event in database" do
     EventRepo |> expect(:list_by, fn _ -> [] end)
     issue_id_invalid = 2
 
-    assert ListEvent.list_events(issue_id_invalid) == []
+    assert ListEvents.run(issue_id_invalid) == []
   end
 
   test "should return a valid event " do
@@ -28,7 +28,7 @@ defmodule OctoEvents.ListEventTest do
       ]
     end)
 
-    event = ListEvent.list_events(5)
+    event = ListEvents.run(5)
 
     assert event == [
              %{
