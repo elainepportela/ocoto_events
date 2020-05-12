@@ -66,7 +66,7 @@ defmodule OctoEventsWeb.EventControllerTest do
     }
 
     CreateEvent
-    |> expect(:create_event, fn _ -> {:ok, params} end)
+    |> expect(:run, fn _ -> {:ok, params} end)
 
     conn = post(conn, "/event", params)
 

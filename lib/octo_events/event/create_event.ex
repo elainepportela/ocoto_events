@@ -1,7 +1,7 @@
 defmodule OctoEvents.CreateEvent do
   alias OctoEvents.EventRepo
 
-  def create_event(params) do
+  def run(params) do
     format_params_event(params)
     |> EventRepo.creation_changeset()
     |> EventRepo.insert()
