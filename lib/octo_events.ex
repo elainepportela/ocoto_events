@@ -1,9 +1,6 @@
 defmodule OctoEvents do
-  @moduledoc """
-  OctoEvents keeps the contexts that define your domain
-  and business logic.
+  alias OctoEvents.{CreateEvent, ListEvents}
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
+  defdelegate create_event(params), to: CreateEvent, as: :run
+  defdelegate list_events(issue_id), to: ListEvents, as: :run
 end

@@ -1,26 +1,26 @@
 defmodule OctoEventsWeb.EventController do
   use OctoEventsWeb, :controller
 
-  alias OctoEvents.EventDomain
+  alias OctoEvents
 
   def create(conn, params) do
-    case EventDomain.create_event(params) do
-      {:ok, _} ->
+    case OctoEvents.create_event(params) do
+      {:ok, changeset} ->
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(200, "{}")
+        |> send_resp(201, Poison.encode!(changeset, pretty: true))
 
-      {:error, _} ->
+      {:error, changeset} ->
         conn
         |> put_resp_content_type("application/json")
-        |> send_resp(500, "{}")
+        |> send_resp(422, Poison.encode!(changeset, pretty: true))
     end
   end
 
   def show(conn, params) do
     events =
       params["issue_id"]
-      |> EventDomain.get_event()
+      |> OctoEvents.list_events()
 
     render(conn, "show.json", events: events)
   end

@@ -1,7 +1,7 @@
-defmodule OctoEvents.EventDomain do
+defmodule OctoEvents.CreateEvent do
   alias OctoEvents.EventRepo
 
-  def create_event(params) do
+  def run(params) do
     format_params_event(params)
     |> EventRepo.creation_changeset()
     |> EventRepo.insert()
@@ -18,9 +18,5 @@ defmodule OctoEvents.EventDomain do
       created_at: params["issue"]["created_at"],
       closed_at: params["issue"]["closed_at"]
     }
-  end
-
-  def get_event(issue_id) do
-    EventRepo.get_by_issue_id(issue_id)
   end
 end
